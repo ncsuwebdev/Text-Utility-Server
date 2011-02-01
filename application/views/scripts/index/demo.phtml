@@ -1,0 +1,28 @@
+<div style="float: left; width:200px">
+	<h2>Logo Options</h2>
+    <?php echo $this->form; ?>
+</div>
+
+<div style="float: left; width:740px">
+	<h2>Preview</h2>
+	<div id="preview"></div>
+	<div style="font-size:12px; padding-top: 20px; width: 600px">
+		<b>Image URL: </b><br /><a target="_blank" id="imgUrl" href=""></a>
+	</div>
+	<br /><br />
+	<h2>Using This API</h2>
+	You can use this API in 2 ways:
+	<ol>
+		<li><b>PREFERRED:  Save the image</b><br />
+		You can save this image to your local webspace by right-clicking on the image and select "Save As...".  This is
+		the preferred method of usage.
+		</li>
+		<li><b>Direct Linking</b><br />
+		You can directly link to this service by using this image URL.  Set
+		this as the <b>src</b> of your <b>img</b> tag.
+		</li>
+	</ol>
+</div>
+
+<textarea id="initialColors"><?php echo $this->colors; ?></textarea>
+<input type="hidden" id="apiUrl" value="<?php echo $this->apiUrl; ?>" />

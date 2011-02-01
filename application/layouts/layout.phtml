@@ -1,0 +1,59 @@
+<?php echo $this->doctype('XHTML1_TRANSITIONAL'); ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<?php 
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')
+                 ->appendHttpEquiv('Content-Language', 'en-US');             
+                 
+echo $this->headMeta() . "\n";
+$this->headTitle("Univers Logo Generator API");
+
+echo "\n";
+     
+$navBar = new Ncstate_Brand_Bar();
+$options = array(
+    'color' => 'red_on_white'
+);
+$navBar->setOptions($options);
+
+echo $this->headTitle() . "\n\n";
+
+$this->headLink()->prependStylesheet($navBar->getStylesheetUrl());
+$this->headLink()->prependStylesheet($this->baseUrl() . '/css/layout.css');
+$this->headLink()->prependStylesheet($this->baseUrl() . '/css/reset-fonts-grids-base.css'); 
+
+echo $this->headLink() . "\n\n";
+
+$this->headScript()->prependFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js');
+
+echo $this->headScript() . "\n";
+
+echo "\n";
+?>
+
+</head>
+
+<body>
+<?php echo $navBar->getIframeHtml(); ?>
+
+<div id="doc4" class="yui-t7">
+	<div id="docInner">
+        <div id="hd" role="banner"><h1>Univers Logo Generator API</h1></div>
+        <div id="bd" role="main">
+        	<div class="yui-g" id="nav">
+        		<ul>
+        			<li><a href="<?php echo $this->url(array(), 'default', true); ?>">Documentation</a></li>
+        			<li><a href="<?php echo $this->url(array(), 'demo', true); ?>">Demo</a></li>
+        		</ul>
+        	</div>
+        	<div class="yui-g">
+        	<?php echo $this->layout()->content; ?>
+        	</div>
+    	</div>
+        <div id="ft" role="contentinfo"></div>
+    </div>
+</div>
+
+</body>
+</html>
