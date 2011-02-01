@@ -1,6 +1,15 @@
 <?php
+/**
+ * Class to generate the URL for a logo to be sent to the API
+ * 
+ * @author jfaustin
+ *
+ */
 class Application_Form_LogoGenerator extends Zend_Form
 {
+    /**
+     * constructor
+     */
     public function __construct()
     {
         $this->setAttrib('id', 'logoGenerator')
@@ -48,7 +57,7 @@ class Application_Form_LogoGenerator extends Zend_Form
         $backgroundColorSelector = $this->createElement('text', 'backgroundColorSelector', array('label' => 'Background Color:'));
         $backgroundColor->addValidator('InArray', false, array(array_keys($colors)));
         
-        $transparent = $this->createElement('checkbox', 'transparent', array('label' => 'Transparent?'));
+        $transparent = $this->createElement('checkbox', 'transparent', array('label' => 'Set Background Color to Transparent?'));
         $transparent->addValidator('Int');
         $transparent->addValidator('Between', false, array(0,1));
         

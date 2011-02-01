@@ -9,6 +9,21 @@ You need to download Zend Framework and place the Zend folder inside /library.  
 latest supported version is Zend Framework 1.11.2.
 
 
+If you want to enable caching, you will need to create a directory somewhere in the 
+filesystem that is writable.  You will then need to set the options in the 
+/application/config/application.ini file as the following:
+
+options.cacheOn = 1
+options.cacheDir = <absolute path to your directory>
+
+
+If you want to enable logging, you will need to create a directory and file somewhere
+in the filesystem that is writable.  You will need to set the options in the
+/application/config/application.ini file as the following:
+
+options.logOn = 1
+options.logDir = <absolute path to your directory>
+options.logFile = <name of the file that is writable>
 
 
 License:

@@ -2,6 +2,9 @@
 
 class IndexController extends Zend_Controller_Action
 {
+    /**
+     * Documentation page
+     */
     public function indexAction()
     {
         $this->view->apiUrl = $this->_getApiUrl();
@@ -15,6 +18,9 @@ class IndexController extends Zend_Controller_Action
         $this->view->normalText = $logo->getNormalText();
     }
     
+    /**
+     * Generates the logo with the desired options
+     */
     public function apiAction()
     {
         $this->_helper->viewRenderer->setNeverRender();
@@ -29,24 +35,54 @@ class IndexController extends Zend_Controller_Action
         $options = array_merge($this->_getAllParams(), $options);
         
         $form = new Application_Form_LogoGenerator();
-        
+
         if (!$form->isValid($options)) {
             foreach ($form->getMessages() as $key => $e) {
                 unset($options[$key]);
             }
         }
         
-        $univLogo->setBoldText($options['boldText'])
+        $key = md5(serialize($options));
+        
+        // get the cache object
+        $cache = Zend_Registry::get('cache');
+        
+        // Log the request
+        $logger = Zend_Registry::get('logger');
+        
+        // load image from cache if available
+        if (($imageSrc = $cache->load($key)) === false) {
+            $univLogo->setBoldText($options['boldText'])
                  ->setNormalText($options['normalText'])
                  ->setOptions($options)
                  ;
                  
-        $image = $univLogo->getImage();
+            $image = $univLogo->getImage();
+            
+            // Capture output buffer of PNG for caching
+            ob_start();
+            imagepng($image);
+            $imageSrc = ob_get_contents();
+            ob_end_clean();
+            
+            $cache->save($imageSrc, $key);
+            
+            $logger->setEventItem('cachehit', 'no');
+        } else {
+            $logger->setEventItem('cachehit', 'yes');
+        }
+        
+        $logger->setEventItem('ip', $_SERVER['REMOTE_ADDR']);
+        $logger->info(http_build_query($options));
         
         header('Content-type: image/png');
-        imagepng($image);
+        echo $imageSrc;
+        
     }
     
+    /**
+     * Provides a demo of the API
+     */
     public function demoAction()
     {
         $bColor = new Ncstate_Brand_Color();
@@ -62,6 +98,9 @@ class IndexController extends Zend_Controller_Action
         $this->view->headLink()->appendStylesheet($this->view->baseUrl() . '/css/index/index.css');        
     }
     
+    /**
+     * Gets the URL for the API
+     */
     protected function _getApiUrl()
     {
         return str_replace($this->view->baseUrl(), '', Zend_Registry::get('siteUrl'))
