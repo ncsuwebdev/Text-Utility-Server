@@ -57,7 +57,7 @@ class IndexController extends Zend_Controller_Action
                  ->setOptions($options)
                  ;
                  
-            $image = $univLogo->getImage();
+            $image = $univLogo->createImage();
             
             // Capture output buffer of PNG for caching
             ob_start();

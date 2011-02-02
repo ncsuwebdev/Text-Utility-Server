@@ -1,28 +1,35 @@
 <h2>Overview</h2>
 <p>
-This API was built for the sole purpose of allowing users at NC State University to generate logos,
-headers, etc. without the need to have the Univers font installed on their local machines.</p>
-<p>These images can be used for anything related to University business.  It was created with
-cost savings in mind, as the Univers font costs per license.</p>
+This API was built for the sole purpose of allowing users at NC State University to generate on-brand logos,
+headers, and graphics which abide by the requirements made available at <a href="http://ncsu.edu/brand">http://ncsu.edu/brand</a>.</p>
 <p>This service is provided by the <a href="http://oit.ncsu.edu">Office of Information Technology</a> and
 <a href="http://ot.ncsu.edu">Outreach Technology</a>.  Send any support requests to 
 <a href="mailto:itappdev@ncsu.edu">itappdev@ncsu.edu</a>.
 </p>
 <br /><br />
-<h2>Usage</h2>
-<p>You can use this API in 2 ways:
+<h2>Usage Notes</h2>
+<p>
 	<ol>
+		<li><b>Branding</b><br />
+		No matter the image created with this tool, it is still important that usage abides by the guidelines set
+		forth by the <a href="http://ncsu.edu/brand">NC State Branding Guidelines</a>.<br /><br />
+		</li>
+		<li><b>Word Separation</b><br />
+		By default, the <b>boldText</b> and <b>normalText</b> fields will not be spaced out.  To make the illusion of
+		two separate words, you should be a space at the end of the <b>boldText</b> string or the beginning of the <b>normalText</b>
+		string.<br /><br />
+		</li>
 		<li><b>Create An Image Using The Demo Tool</b><br /></b>
 		You can use the <a href="<?php echo $this->url(array(), 'demo', true); ?>">demo tool</a> 
 		to create your image however you want.  You can then save the image to your local webspace 
-		by right-clicking on the image and select "Save As...".
+		by right-clicking on the image and select "Save As...".<br /><br />
 		</li>
 		<li><b>Make an API Call</b><br />
 		You can directly link to this service by using the image URL with the specific parameters
-		as defined below.  This will return a PNG image to you.
+		as defined below.  This will return a PNG image to you.<br /><br />
 		</li>
 	</ol>
-	<br />
+
 	We do not do any rate limiting currently, but we would request that if you wrap the API in any
 	kind of configuration builder that you cache the image created locally.  We do server-based
 	image caching, but the fewer requests, the better.
