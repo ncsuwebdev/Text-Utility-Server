@@ -25,10 +25,6 @@ options.logOn = 1
 options.logDir = <absolute path to your directory>
 options.logFile = <name of the file that is writable>
 
-
-You will need to put the required Univers fonts into the /application/fonts folder.  The
-ones this was designed was UVC_____.TTF and UVCB____.TTF.
-
 =======================================================================================
 
 
