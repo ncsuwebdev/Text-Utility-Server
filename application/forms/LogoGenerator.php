@@ -28,19 +28,21 @@ class Application_Form_LogoGenerator extends Zend_Form
 	    
 	    
         // Email address field
-        $boldText = $this->createElement('text', 'boldText', array('label' => 'Bold Text:'));
-        $boldText->addValidator('StringLength', false, array(0, 256));
-        $boldText->addFilter('StripTags');
-        $boldText->setValue('NC STATE ');
-        
-        $normalText = $this->createElement('text', 'normalText', array('label' => 'Normal Text:'));
-        $normalText->addValidator('StringLength', false, array(0, 256));
-        $normalText->addFilter('StripTags');
-        $normalText->setValue('UNIVERSITY');
+        $text = $this->createElement('textarea', 'text', array('label' => 'Text:'));
+        $text->addValidator('StringLength', false, array(0, 256));
+        $text->addFilter('StripTags');
+        $text->setAttrib('maxlength', 256);
+        $text->setAttrib('rows', 3);
+        $text->setAttrib('cols', 35);
+        $text->setValue('*NC STATE* UNIVERSITY');
+        $text->setDescription('Use an asterisk * around a phrase to bold it.');
         
         $fontSize = $this->createElement('text', 'fontSize', array('label' => 'Font Size:'));
         $fontSize->addValidator('Int');
         $fontSize->addValidator('Between', false, array(10, 256));
+        
+        $lineSpacing = $this->createElement('text', 'lineSpacing', array('label' => 'Line Spacing:'));
+        $lineSpacing->addValidator('Between', false, array(-100, 100));
         
         $fontColor = $this->createElement('hidden', 'fontColor');
         $fontColorSelector = $this->createElement('text', 'fontColorSelector', array('label' => 'Font Color:'));
@@ -49,9 +51,8 @@ class Application_Form_LogoGenerator extends Zend_Form
         $leftTextOffset = $this->createElement('text', 'leftTextOffset', array('label' => 'Left offset of Text:'));
         $leftTextOffset->addValidator('Int');
         
-        $verticalAlign = $this->createElement('select', 'verticalAlign', array('label' => 'Vertical text align:'));
-        $verticalAlign->setMultiOptions(array('top' => 'Top', 'center' => 'Center', 'bottom' => 'Bottom'));
-        $verticalAlign->addValidator('InArray', false, array(array('top', 'bottom', 'center')));
+        $baselineTextOffset = $this->createElement('text', 'baselineTextOffset', array('label' => 'Baseline offset of Text:'));
+        $baselineTextOffset->addValidator('Int');
         
         $backgroundColor = $this->createElement('hidden', 'backgroundColor');
         $backgroundColorSelector = $this->createElement('text', 'backgroundColorSelector', array('label' => 'Background Color:'));
@@ -82,7 +83,7 @@ class Application_Form_LogoGenerator extends Zend_Form
             )
         );
         
-        $this->addElements(array($boldText, $normalText, $fontSize, $fontColorSelector, $leftTextOffset, $verticalAlign, $backgroundColorSelector, $transparent, $width, $height, $submit, $reset, $fontColor, $backgroundColor));
+        $this->addElements(array($text, $fontSize, $lineSpacing, $fontColorSelector, $leftTextOffset, $baselineTextOffset, $backgroundColorSelector, $transparent, $width, $height, $submit, $reset, $fontColor, $backgroundColor));
         
         $elements = $this->getElements();
         foreach ($elements as $e) {

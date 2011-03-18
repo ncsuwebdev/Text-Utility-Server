@@ -14,8 +14,7 @@ class IndexController extends Zend_Controller_Action
         
         $logo = new Ncstate_Brand_Logo();
         $this->view->options = $logo->getOptions();
-        $this->view->boldText = $logo->getBoldText();
-        $this->view->normalText = $logo->getNormalText();
+        $this->view->text = $logo->getText();
     }
     
     /**
@@ -52,8 +51,7 @@ class IndexController extends Zend_Controller_Action
         
         // load image from cache if available
         if (($imageSrc = $cache->load($key)) === false) {
-            $univLogo->setBoldText($options['boldText'])
-                 ->setNormalText($options['normalText'])
+            $univLogo->setText($options['text'])
                  ->setOptions($options)
                  ;
                  

@@ -14,16 +14,25 @@ headers, and graphics which abide by the requirements made available at <a href=
 		No matter the image created with this tool, it is still important that usage abides by the guidelines set
 		forth by the <a href="http://ncsu.edu/brand">NC State Branding Guidelines</a>.<br /><br />
 		</li>
-		<li><b>Word Separation</b><br />
-		By default, the <b>boldText</b> and <b>normalText</b> fields will not be spaced out.  To make the illusion of
-		two separate words, you should be a space at the end of the <b>boldText</b> string or the beginning of the <b>normalText</b>
-		string.<br /><br />
+		
+		<li><b>Color Selection for Website Headers</b><br />
+		If generating a logo for a header image on a website, it must consist of only the primary colors: Red, Black 
+		and White.  All other color combinations should not be used for the main headers of a website.<br /><br />
 		</li>
-		<li><b>Create An Image Using The Demo Tool</b><br /></b>
+		
+		<li><b>Accessible Color Combinations</b><br />
+		While color combinations for font vs. background colors can be customized, it is important that the combinations
+		you use abide by the WCAG 2 Level AA guidelines.  To better help you pick these colors, refer to the
+		<a href="http://accessibility.oit.ncsu.edu/tools/color-contrast/accessible-color-palette.php?&primary=CC0000,000000,FFFFFF&secondary=383838,666666,CCCCCC,E1E1E1,5C5541,666633,556677,A20000&tertiary=A79574,C5BD9D,E5E1D0,778855,99AA77,CCDDAA,67849C,CC9900&level=AA&ncsu=1">
+		NC State University Color Palette Accessibility Checker</a>.<br /><br />
+		</li>
+		
+		<li><b>Create An Image Using The Demo Tool</b><br />
 		You can use the <a href="<?php echo $this->url(array(), 'demo', true); ?>">demo tool</a> 
 		to create your image however you want.  You can then save the image to your local webspace 
 		by right-clicking on the image and select "Save As...".<br /><br />
 		</li>
+		
 		<li><b>Make an API Call</b><br />
 		You can directly link to this service by using the image URL with the specific parameters
 		as defined below.  This will return a PNG image to you.<br /><br />
@@ -53,15 +62,10 @@ will be reset to the default value as specified in the table below.
 	</thead>
 	<tbody>
 		<tr>
-			<td>boldText</td>
-			<td><?php echo $this->boldText; ?></td>
-			<td>First part of the logo, which has bolded text.</td>
-			<td>string, limited to 256 characters</td>
-		</tr>
-		<tr>
-			<td>normalText</td>
-			<td><?php echo $this->normalText; ?></td>
-			<td>Second part of the logo, which has normal weight text.</td>
+			<td>text</td>
+			<td><?php echo $this->text; ?></td>
+			<td>Text to be displayed on the logo.  Wrap options in astericks * to bold them.  Multi-line
+			also supported.</td>
 			<td>string, limited to 256 characters</td>
 		</tr>
 		<tr>
@@ -83,10 +87,16 @@ will be reset to the default value as specified in the table below.
 			<td>integer</td>
 		</tr>
 		<tr>
-			<td>verticalAlign</td>
-			<td><?php echo $this->options['verticalAlign']; ?></td>
-			<td>Alignment of the text vertically inside the image</td>
-			<td>"top", "center", or "bottom"</td>
+			<td>baselineTextOffset</td>
+			<td><?php echo $this->options['baselineTextOffset']; ?></td>
+			<td>Distance in pixels to offset the text from the bottom border of the image</td>
+			<td>integer</td>
+		</tr>
+		<tr>
+			<td>lineSpacing</td>
+			<td><?php echo $this->options['lineSpacing']; ?></td>
+			<td>Distance in pixels between the lines of multi-line text</td>
+			<td>integer</td>
 		</tr>
 		<tr>
 			<td>backgroundColor</td>
