@@ -1,47 +1,49 @@
 <h2>Overview</h2>
 <p>
-This API was built for the sole purpose of allowing users at NC State University to generate on-brand logos,
-headers, and graphics which abide by the requirements made available at <a href="http://ncsu.edu/brand">http://ncsu.edu/brand</a>.</p>
-<p>This service is provided by the <a href="http://oit.ncsu.edu">Office of Information Technology</a> and
-<a href="http://ot.ncsu.edu">Outreach Technology</a>.  Send any support requests to 
-<a href="mailto:itappdev@ncsu.edu">itappdev@ncsu.edu</a>.
+    This API was built for the sole purpose of enabling users at NC State University to create on-brand logos, headers, 
+    and graphics that conform to the requirements found at <a href="http://ncsu.edu/brand">http://ncsu.edu/brand</a>.
+</p>
+<p>
+    This service is provided by the <a href="http://oit.ncsu.edu">Office of Information Technology</a> and
+    <a href="http://ot.ncsu.edu">Outreach Technology</a>.  Send any support requests to 
+    <a href="mailto:itappdev@ncsu.edu">itappdev@ncsu.edu</a>.
 </p>
 <br /><br />
 <h2>Usage Notes</h2>
 <p>
 	<ol>
 		<li><b>Branding</b><br />
-		No matter the image created with this tool, it is still important that usage abides by the guidelines set
-		forth by the <a href="http://ncsu.edu/brand">NC State Branding Guidelines</a>.<br /><br />
+		It is the responsibility of the user to ensure that any image created with this API conforms to 
+		the <a href="http://ncsu.edu/brand">NC State Branding Guidelines</a>.<br /><br />
 		</li>
 		
 		<li><b>Color Selection for Website Headers</b><br />
-		If generating a logo for a header image on a website, it must consist of only the primary colors: Red, Black 
-		and White.  All other color combinations should not be used for the main headers of a website.<br /><br />
+		A logo image created for a Web site header must consist of only the primary colors: Red, Black 
+		and White. No other color combinations should be used for a logo image that appears in a 
+		Web site header.<br /><br />
 		</li>
 		
 		<li><b>Accessible Color Combinations</b><br />
-		While color combinations for font vs. background colors can be customized, it is important that the combinations
-		you use abide by the WCAG 2 Level AA guidelines.  To better help you pick these colors, refer to the
+		Each combination of font and background colors must meet the WCAG 2 Level AA guidelines. For 
+		assistance in selecting accessible color combinations, see the 
 		<a href="http://accessibility.oit.ncsu.edu/tools/color-contrast/accessible-color-palette.php?&primary=CC0000,000000,FFFFFF&secondary=383838,666666,CCCCCC,E1E1E1,5C5541,666633,556677,A20000&tertiary=A79574,C5BD9D,E5E1D0,778855,99AA77,CCDDAA,67849C,CC9900&level=AA&ncsu=1">
 		NC State University Color Palette Accessibility Checker</a>.<br /><br />
 		</li>
 		
-		<li><b>Create An Image Using The Demo Tool</b><br />
-		You can use the <a href="<?php echo $this->url(array(), 'demo', true); ?>">demo tool</a> 
-		to create your image however you want.  You can then save the image to your local webspace 
-		by right-clicking on the image and select "Save As...".<br /><br />
+		<li><b>Saving an Image</b><br />
+		After you create an image with the <a href="<?php echo $this->url(array(), 'demo', true); ?>">demo tool</a>, 
+		you can save it to your local Web space by right-clicking on the image and selecting "Save As..."<br /><br />
 		</li>
 		
 		<li><b>Make an API Call</b><br />
-		You can directly link to this service by using the image URL with the specific parameters
-		as defined below.  This will return a PNG image to you.<br /><br />
+		You can link directly to this service by using the image URL with the specific parameters as defined 
+		below. This will return a PNG image to you.<br /><br />
 		</li>
 	</ol>
 
-	We do not do any rate limiting currently, but we would request that if you wrap the API in any
-	kind of configuration builder that you cache the image created locally.  We do server-based
-	image caching, but the fewer requests, the better.
+	We do not do any rate limiting currently, but we request that if you wrap the API in a configuration 
+	builder that you cache the created image locally. We do server-based image caching, but the fewer 
+	requests, the better.
 </p>
 <br /><br /><br />
 <h2>Configuration Options</h2>
@@ -64,7 +66,7 @@ will be reset to the default value as specified in the table below.
 		<tr>
 			<td>text</td>
 			<td><?php echo $this->text; ?></td>
-			<td>Text to be displayed on the logo.  Wrap options in astericks * to bold them.  Multi-line
+			<td>Text to be displayed on the logo.  Wrap value in astericks (*) to make it bold.  Multi-line
 			also supported.</td>
 			<td>string, limited to 256 characters</td>
 		</tr>
@@ -77,8 +79,20 @@ will be reset to the default value as specified in the table below.
 		<tr>
 			<td>fontColor</td>
 			<td><?php echo $this->options['fontColor']; ?></td>
-			<td>Brand-aware color key defining which color to make the font</td>
+			<td>Brand-aware key defining the font color</td>
 			<td>string, limited to branded color keys</td>
+		</tr>
+		<tr>
+			<td>backgroundColor</td>
+			<td><?php echo $this->options['backgroundColor']; ?></td>
+			<td>Brand-aware key defining the background color</td>
+			<td>string, limited to branded color keys</td>
+		</tr>
+		<tr>
+			<td>transparent</td>
+			<td><?php echo ($this->options['transparent']) ? '1' : '0'; ?></td>
+			<td>Flag to make the image background color transparent</td>
+			<td><b>1</b> = make it transparent<br /><b>0</b> = no transparency</td>
 		</tr>
 		<tr>
 			<td>leftTextOffset</td>
@@ -99,27 +113,15 @@ will be reset to the default value as specified in the table below.
 			<td>integer</td>
 		</tr>
 		<tr>
-			<td>backgroundColor</td>
-			<td><?php echo $this->options['backgroundColor']; ?></td>
-			<td>Brand-aware color key defining which color to make the background</td>
-			<td>string, limited to branded color keys</td>
-		</tr>
-		<tr>
-			<td>transparent</td>
-			<td><?php echo ($this->options['transparent']) ? '1' : '0'; ?></td>
-			<td>Flag to make the background color transparent</td>
-			<td><b>1</b> = make it transparent<br /><b>0</b> = no transparency</td>
-		</tr>
-		<tr>
 			<td>width</td>
 			<td><?php echo $this->options['width']; ?></td>
-			<td>Width, in pixels, for the image</td>
+			<td>Image width in pixels</td>
 			<td>integer, between 1 and 2000</td>
 		</tr>
 		<tr>
 			<td>height</td>
 			<td><?php echo $this->options['height']; ?></td>
-			<td>Height, in pixels, for the image</td>
+			<td>Image height in pixels</td>
 			<td>integer, between 1 and 2000</td>
 		</tr>
 	</tbody>

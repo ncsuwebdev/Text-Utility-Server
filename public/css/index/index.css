@@ -71,3 +71,28 @@ h2 {
 	width: 90%;
 	padding-bottom: 5px;
 }
+
+span#wcagResult, span#headerResult {
+	display: block;
+	padding: 5px;
+	margin: 10px 0px;
+	border: 1px solid #000000;
+}
+
+.pass b {
+	color: #00AA00;
+}
+
+.pass {
+    border-color: #00AA00;
+    background-color: #EFFFEF;
+}
+
+.fail b {
+	color: #AA0000;	
+}
+
+.fail {
+    border-color: #AA0000;
+    background-color: #FFEFEF;  
+}

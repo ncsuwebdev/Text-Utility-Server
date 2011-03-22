@@ -96,6 +96,41 @@ class IndexController extends Zend_Controller_Action
         $this->view->headLink()->appendStylesheet($this->view->baseUrl() . '/css/index/index.css');        
     }
     
+    public function validateAction()
+    {
+        $this->_helper->viewRenderer->setNeverRender();
+        $this->_helper->layout()->disableLayout();
+        
+        $brandColor = new Ncstate_Brand_Color();
+
+        $params = $this->_getAllParams();
+        
+        $isBold = preg_match('/\*/i', $params['text']);
+        $level = 'AA';
+        $fontSize = $params['fontSize'];
+        $fontColor = $params['fontColor'];
+        $backgroundColor = $params['backgroundColor'];
+        
+        try {
+            $isValidColorContrast = $brandColor->isValidColorContrast($fontColor, $backgroundColor, $fontSize, $isBold, $level);
+            
+            $isValidWebsiteHeader = $brandColor->isValidWebsiteHeader($fontColor, $backgroundColor);
+            
+        } catch (Exception $e) {
+            echo Zend_Json::encode(array('rc' => 0, 'message' => $e->getMessage()));
+            return;
+        }
+        
+                
+        echo Zend_Json::encode(
+            array(
+        		'rc' => 1, 
+        		'isValidColorContrast' => ($isValidColorContrast) ? 'yes' : 'no',
+            	'isValidWebsiteHeader' => ($isValidWebsiteHeader) ? 'yes' : 'no',
+            )
+        );
+    }
+    
     /**
      * Gets the URL for the API
      */
