@@ -19,9 +19,9 @@ class Application_Form_LogoGenerator extends Zend_Form
 	                 'Form',
 	         ));
 	         
-	    $logo = new Ncstate_Brand_Logo();
+	    $brandText = new Ncstate_Brand_Text();
 	    
-	    $defaults = $logo->getOptions();
+	    $defaults = $brandText->getOptions();
 	    
 	    $color = new Ncstate_Brand_Color();
 	    $colors = $color->getColors();
@@ -34,7 +34,7 @@ class Application_Form_LogoGenerator extends Zend_Form
         $text->setAttrib('maxlength', 256);
         $text->setAttrib('rows', 3);
         $text->setAttrib('cols', 35);
-        $text->setValue('*NC STATE* UNIVERSITY');
+        $text->setValue($brandText->getText());
         $text->setDescription('Use an asterisk * around a phrase to bold it.');
         
         $fontSize = $this->createElement('text', 'fontSize', array('label' => 'Font Size:'));

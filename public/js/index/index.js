@@ -29,9 +29,11 @@ $('document').ready(function() {
                 if (data.rc == 1) {
                     var wcagResult = $('#wcagResult');
                     var headerResult = $('#headerResult');
+                    var brickResult = $('#brickResult');
                     
                     wcagResult.removeClass();
                     headerResult.removeClass();
+                    brickResult.removeClass();
                     
                     if (data.isValidColorContrast == 'yes') {
                         wcagResult.html('<b>Yes!</b>  These color combinations meet the WCAG2 AA specification.');
@@ -47,7 +49,15 @@ $('document').ready(function() {
                     } else {
                         headerResult.html('<b>No!</b>  These color combinations are not allowed to be used as website headers.');
                         headerResult.addClass('fail');
-                    }                    
+                    }  
+                    
+                    if (data.isValidText == 'yes') {
+                        brickResult.html('<b>Yes!</b>  The text is valid an not representative of "the brick."');
+                        brickResult.addClass('pass');
+                    } else {
+                        brickResult.html('<b>No!</b>  You should not be using this tool to create brick-like logos.');
+                        brickResult.addClass('fail');
+                    }
                 }
             },
             "json"

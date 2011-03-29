@@ -12,9 +12,9 @@ class IndexController extends Zend_Controller_Action
         $bColor = new Ncstate_Brand_Color();
         $this->view->colors = $bColor->getColors();
         
-        $logo = new Ncstate_Brand_Logo();
-        $this->view->options = $logo->getOptions();
-        $this->view->text = $logo->getText();
+        $text = new Ncstate_Brand_Text();
+        $this->view->options = $text->getOptions();
+        $this->view->text = $text->getText();
     }
     
     /**
@@ -25,7 +25,7 @@ class IndexController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNeverRender();
         $this->_helper->layout()->disableLayout();
         
-        $univLogo = new Ncstate_Brand_Logo();
+        $text = new Ncstate_Brand_Text();
         
         $options = array(
             'pathToFonts' => APPLICATION_PATH . '/fonts',
@@ -51,11 +51,11 @@ class IndexController extends Zend_Controller_Action
         
         // load image from cache if available
         if (($imageSrc = $cache->load($key)) === false) {
-            $univLogo->setText($options['text'])
+            $text->setText($options['text'])
                  ->setOptions($options)
                  ;
                  
-            $image = $univLogo->createImage();
+            $image = $text->createImage();
             
             // Capture output buffer of PNG for caching
             ob_start();
@@ -102,6 +102,7 @@ class IndexController extends Zend_Controller_Action
         $this->_helper->layout()->disableLayout();
         
         $brandColor = new Ncstate_Brand_Color();
+        $brandText = new Ncstate_Brand_Text();
 
         $params = $this->_getAllParams();
         
@@ -110,11 +111,14 @@ class IndexController extends Zend_Controller_Action
         $fontSize = $params['fontSize'];
         $fontColor = $params['fontColor'];
         $backgroundColor = $params['backgroundColor'];
+        $text = $params['text'];
         
         try {
             $isValidColorContrast = $brandColor->isValidColorContrast($fontColor, $backgroundColor, $fontSize, $isBold, $level);
             
             $isValidWebsiteHeader = $brandColor->isValidWebsiteHeader($fontColor, $backgroundColor);
+            
+            $isValidText = $brandText->isValidText($text);
             
         } catch (Exception $e) {
             echo Zend_Json::encode(array('rc' => 0, 'message' => $e->getMessage()));
@@ -127,6 +131,7 @@ class IndexController extends Zend_Controller_Action
         		'rc' => 1, 
         		'isValidColorContrast' => ($isValidColorContrast) ? 'yes' : 'no',
             	'isValidWebsiteHeader' => ($isValidWebsiteHeader) ? 'yes' : 'no',
+                'isValidText'          => ($isValidText) ? 'yes' : 'no',
             )
         );
     }

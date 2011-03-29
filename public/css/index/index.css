@@ -72,7 +72,7 @@ h2 {
 	padding-bottom: 5px;
 }
 
-span#wcagResult, span#headerResult {
+span#wcagResult, span#headerResult, span#brickResult {
 	display: block;
 	padding: 5px;
 	margin: 10px 0px;

@@ -1,6 +1,6 @@
 <h2>Overview</h2>
 <p>
-    This API was built for the sole purpose of enabling users at NC State University to create on-brand logos, headers, 
+    This API was built for the sole purpose of enabling users at NC State University to create on-brand text, headers, 
     and graphics that conform to the requirements found at <a href="http://ncsu.edu/brand">http://ncsu.edu/brand</a>.
 </p>
 <p>
@@ -17,9 +17,14 @@
 		the <a href="http://ncsu.edu/brand">NC State Branding Guidelines</a>.<br /><br />
 		</li>
 		
+		<li><b>Logging and Reviews</b><br />
+		Every request to the API is logged and periodically reviewed by staff.  Abuse of the API will result
+		in revocation of access.<br /><br />
+		</li>	
+				
 		<li><b>Color Selection for Website Headers</b><br />
-		A logo image created for a Web site header must consist of only the primary colors: Red, Black 
-		and White. No other color combinations should be used for a logo image that appears in a 
+		An image created for a Web site header must consist of only the primary colors: Red, Black 
+		and White. No other color combinations should be used for a text-based image that appears in a 
 		Web site header.<br /><br />
 		</li>
 		
@@ -30,6 +35,16 @@
 		NC State University Color Palette Accessibility Checker</a>.<br /><br />
 		</li>
 		
+		<li><b>Creating Brick-like Images</b><br />
+		"The Brick" is the official NC State University logo which is created and maintained by
+		University Communications.  It has 
+		<a href="http://www.ncsu.edu/brand/logos/logo-guidelines/">exact specifications regarding size, usage, and creation</a>.  
+		If you need a standard "brick" logo, you can download the correct file 
+		<a href="http://www.ncsu.edu/brand/downloads/downloads/">for print</a> or 
+		<a href="http://www.ncsu.edu/brand/downloads/web-downloads/">for web</a>. You should not be using this tool to 
+		create a brick-like image.<br /><br />
+		</li>
+		
 		<li><b>Saving an Image</b><br />
 		After you create an image with the <a href="<?php echo $this->url(array(), 'demo', true); ?>">demo tool</a>, 
 		you can save it to your local Web space by right-clicking on the image and selecting "Save As..."<br /><br />
@@ -37,8 +52,12 @@
 		
 		<li><b>Make an API Call</b><br />
 		You can link directly to this service by using the image URL with the specific parameters as defined 
-		below. This will return a PNG image to you.<br /><br />
+		below. This will return a PNG image to you.  It is recommended that you <b>DO NOT</b> directly link
+		this URL to the src attribute of your &lt;img&gt; tag.  If you are using the API to generate images,
+		store them locally to ensure availability. Otherwise, right-click on the image generated in the demo 
+		tooland save it.<br /><br />
 		</li>
+			
 	</ol>
 
 	We do not do any rate limiting currently, but we request that if you wrap the API in a configuration 
@@ -66,7 +85,7 @@ will be reset to the default value as specified in the table below.
 		<tr>
 			<td>text</td>
 			<td><?php echo $this->text; ?></td>
-			<td>Text to be displayed on the logo.  Wrap value in astericks (*) to make it bold.  Multi-line
+			<td>Text to be displayed on the image.  Wrap value in astericks (*) to make it bold.  Multi-line
 			also supported.</td>
 			<td>string, limited to 256 characters</td>
 		</tr>

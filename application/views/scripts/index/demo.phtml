@@ -1,5 +1,5 @@
 <div style="float: left; width:300px">
-	<h2>Logo Options</h2>
+	<h2>Image Options</h2>
     <?php echo $this->form; ?>
 </div>
 
@@ -18,15 +18,25 @@
     		Level AA guidelines.  Learn more at 
     		<a href="http://accessibility.oit.ncsu.edu/tools/color-contrast/" target="_blank">http://accessibility.oit.ncsu.edu/tools/color-contrast/</a>.
     		<span id="wcagResult"></span>
-    		<br />
 		</li>
 		<li>
     		<b>Website Header Validation Test</b><br />
-    		A logo image created for a Web site header must consist of only the primary colors: Red, Black 
-    		and White. No other color combinations should be used for a logo image that appears in a 
+    		An image created for a Web site header must consist of only the primary colors: Red, Black 
+    		and White. No other color combinations should be used for a text-based image that appears in a 
     		Web site header.  If your image doesn't pass this test, that does not mean you can not use it 
     		elsewhere in your site and pulications.
     		<span id="headerResult"></span>
+		</li>
+		<li>
+    		<b>Not-The-Brick Validation Test</b><br />
+    		"The Brick" is the official NC State University logo which is created and maintained by
+    		University Communications.  It has 
+    		<a href="http://www.ncsu.edu/brand/logos/logo-guidelines/">exact specifications regarding size, usage, and creation</a>.  
+    		If you need a standard "brick" logo, you can download the correct file 
+    		<a href="http://www.ncsu.edu/brand/downloads/downloads/">for print</a> or 
+    		<a href="http://www.ncsu.edu/brand/downloads/web-downloads/">for web</a>. You should not be using this tool to 
+    		create a brick-like image.
+    		<span id="brickResult"></span>
 		</li>
 	
 	</ul>		
@@ -38,15 +48,24 @@
 		the <a href="http://ncsu.edu/brand">NC State Branding Guidelines</a>.<br /><br />
 		</li>
 		
+		<li><b>Logging and Reviews</b><br />
+		Every request to the API is logged and periodically reviewed by staff.  Abuse of the API will result
+		in revocation of access.<br /><br />
+		</li>
+		
 		<li><b>Saving an Image</b><br />
 		After you create an image with the <a href="<?php echo $this->url(array(), 'demo', true); ?>">demo tool</a>, 
 		you can save it to your local Web space by right-clicking on the image and selecting "Save As..."<br /><br />
 		</li>
 
 		<li><b>Direct Linking</b><br />
-		You can directly link to this service by using this image URL.  Set
-		this as the <b>src</b> of your <b>img</b> tag.
+		You can link directly to this service by using the image URL with the specific parameters. This will return a 
+		PNG image to you.  It is recommended that you <b>DO NOT</b> directly link
+		this URL to the src attribute of your &lt;img&gt; tag.  If you are using the API to generate images,
+		store them locally to ensure availability.  Otherwise, right-click on the image generated and save it.
 		</li>
+		
+			
 	</ol>
 </div>
 
